@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telecom Churn Prediction System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <i class="fas fa-chart-line header-icon"></i>
+                <h1>Telecom Customer Churn Prediction</h1>
+                <p class="subtitle">Predict customer churn using Machine Learning</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Information Card -->
+                <div class="info-card">
+                    <i class="fas fa-info-circle"></i>
+                    <p>Enter customer details below to predict the likelihood of churn. All fields are required.</p>
+                </div>
+
+                <!-- Prediction Form -->
+                <form id="predictionForm" class="prediction-form">
+                    <div class="form-section">
+                        <h2><i class="fas fa-user"></i> Account Information</h2>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="AccountWeeks">
+                                    <i class="fas fa-calendar-alt"></i> Account Weeks
+                                    <span class="tooltip" title="Number of weeks the customer has been with the company">?</span>
+                                </label>
+                                <input type="number" id="AccountWeeks" name="AccountWeeks" 
+                                       step="1" min="0" max="300" required
+                                       placeholder="e.g., 128">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="ContractRenewal">
+                                    <i class="fas fa-sync"></i> Contract Renewal
+                                    <span class="tooltip" title="Has the customer renewed their contract? (0=No, 1=Yes)">?</span>
+                                </label>
+                                <select id="ContractRenewal" name="ContractRenewal" required>
+                                    <option value="">Select...</option>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="DataPlan">
+                                    <i class="fas fa-wifi"></i> Data Plan
+                                    <span class="tooltip" title="Does the customer have a data plan? (0=No, 1=Yes)">?</span>
+                                </label>
+                                <select id="DataPlan" name="DataPlan" required>
+                                    <option value="">Select...</option>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="DataUsage">
+                                    <i class="fas fa-database"></i> Data Usage (GB)
+                                    <span class="tooltip" title="Amount of data used in GB">?</span>
+                                </label>
+                                <input type="number" id="DataUsage" name="DataUsage" 
+                                       step="0.01" min="0" max="10" required
+                                       placeholder="e.g., 2.7">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h2><i class="fas fa-phone"></i> Usage Information</h2>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="CustServCalls">
+                                    <i class="fas fa-headset"></i> Customer Service Calls
+                                    <span class="tooltip" title="Number of calls made to customer service">?</span>
+                                </label>
+                                <input type="number" id="CustServCalls" name="CustServCalls" 
+                                       step="1" min="0" max="10" required
+                                       placeholder="e.g., 1">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="DayMins">
+                                    <i class="fas fa-clock"></i> Day Minutes
+                                    <span class="tooltip" title="Total minutes of daytime calls">?</span>
+                                </label>
+                                <input type="number" id="DayMins" name="DayMins" 
+                                       step="0.1" min="0" max="400" required
+                                       placeholder="e.g., 265.1">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="DayCalls">
+                                    <i class="fas fa-phone-volume"></i> Day Calls
+                                    <span class="tooltip" title="Number of daytime calls made">?</span>
+                                </label>
+                                <input type="number" id="DayCalls" name="DayCalls" 
+                                       step="1" min="0" max="200" required
+                                       placeholder="e.g., 110">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="RoamMins">
+                                    <i class="fas fa-globe"></i> Roaming Minutes
+                                    <span class="tooltip" title="Total minutes of roaming calls">?</span>
+                                </label>
+                                <input type="number" id="RoamMins" name="RoamMins" 
+                                       step="0.1" min="0" max="30" required
+                                       placeholder="e.g., 10">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h2><i class="fas fa-dollar-sign"></i> Billing Information</h2>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="MonthlyCharge">
+                                    <i class="fas fa-money-bill-wave"></i> Monthly Charge ($)
+                                    <span class="tooltip" title="Monthly service charge in dollars">?</span>
+                                </label>
+                                <input type="number" id="MonthlyCharge" name="MonthlyCharge" 
+                                       step="0.01" min="0" max="200" required
+                                       placeholder="e.g., 89">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="OverageFee">
+                                    <i class="fas fa-exclamation-triangle"></i> Overage Fee ($)
+                                    <span class="tooltip" title="Additional charges for overage in dollars">?</span>
+                                </label>
+                                <input type="number" id="OverageFee" name="OverageFee" 
+                                       step="0.01" min="0" max="30" required
+                                       placeholder="e.g., 9.87">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-brain"></i> Predict Churn
+                        </button>
+                        <button type="button" class="btn btn-secondary" onclick="resetForm()">
+                            <i class="fas fa-redo"></i> Reset Form
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Loading Spinner -->
+                <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Analyzing customer data...</p>
+                </div>
+
+                <!-- Results Section -->
+                <div id="resultsSection" class="results-section" style="display: none;">
+                    <div class="result-card">
+                        <h2><i class="fas fa-chart-pie"></i> Prediction Results</h2>
+                        
+                        <div class="prediction-result">
+                            <div class="result-icon-container">
+                                <i id="resultIcon" class="fas fa-question-circle"></i>
+                            </div>
+                            <h3 id="predictionLabel">-</h3>
+                            <p class="result-description" id="resultDescription">-</p>
+                        </div>
+
+                        <div class="probability-container">
+                            <h4>Churn Probability</h4>
+                            <div class="probability-bar-container">
+                                <div class="probability-bar">
+                                    <div id="churnBar" class="bar churn-bar" style="width: 0%"></div>
+                                </div>
+                                <div class="probability-labels">
+                                    <span>Not Churn: <strong id="notChurnProb">0%</strong></span>
+                                    <span>Churn: <strong id="churnProb">0%</strong></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="recommendation" id="recommendation">
+                            <!-- Recommendation will be inserted here -->
+                        </div>
+
+                        <button class="btn btn-secondary" onclick="resetResults()">
+                            <i class="fas fa-arrow-left"></i> Make Another Prediction
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Error Section -->
+                <div id="errorSection" class="error-section" style="display: none;">
+                    <div class="error-card">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <h3>Error</h3>
+                        <p id="errorMessage">-</p>
+                        <button class="btn btn-secondary" onclick="hideError()">
+                            <i class="fas fa-times"></i> Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 Telecom Churn Prediction System | Powered by Logistic Regression</p>
+            <p class="footer-tech">Built with Python, Flask, Scikit-learn</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
