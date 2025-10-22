@@ -5,11 +5,13 @@
 ![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-1.3.2-orange.svg)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-A comprehensive machine learning project that predicts customer churn in the telecom industry using Logistic Regression. This project includes a complete data science pipeline from EDA to deployment with an interactive web interface.
+A comprehensive machine learning project that predicts customer churn in the telecom industry using Logistic Regression. This project includes a complete data science pipeline from exploratory data analysis to deployment with an interactive web interface.
 
 ## 🎯 Project Overview
 
-Customer churn prediction is crucial for telecom companies to identify customers likely to leave and take proactive retention measures. This project implements a production-ready machine learning solution with:
+Customer churn prediction is crucial for telecom companies to identify customers likely to leave and take proactive retention measures. This project implements a production-ready machine learning solution that analyzes customer behavior patterns and predicts churn risk with confidence scores and personalized recommendations.
+
+### Key Features
 
 - **Exploratory Data Analysis (EDA)** with comprehensive visualizations
 - **Data Preprocessing Pipeline** with feature scaling and validation
@@ -28,114 +30,79 @@ Logistic_Regression_Project/
 │
 ├── src/
 │   ├── preprocessing.py                 # Data preprocessing module
-│   └── model.py                         # Model training and evaluation module
+│   └── model.py                         # Model training and evaluation
 │
-├── models/
-│   ├── churn_model.pkl                  # Trained model (generated)
-│   ├── scaler.pkl                       # Fitted scaler (generated)
-│   ├── feature_names.pkl                # Feature names (generated)
-│   ├── confusion_matrix.png             # Confusion matrix plot (generated)
-│   ├── roc_curve.png                    # ROC curve plot (generated)
-│   └── feature_importance.png           # Feature importance plot (generated)
+├── models/                              # Generated after training
+│   ├── churn_model.pkl                  # Trained model
+│   ├── scaler.pkl                       # Fitted scaler
+│   ├── feature_names.pkl                # Feature mappings
+│   ├── confusion_matrix.png             # Performance visualization
+│   ├── roc_curve.png                    # ROC curve
+│   └── feature_importance.png           # Feature importance
 │
 ├── templates/
-│   └── index.html                       # Web interface template
+│   └── index.html                       # Web interface
 │
 ├── static/
-│   ├── style.css                        # CSS styling
-│   └── script.js                        # JavaScript for interactivity
+│   ├── style.css                        # Styling
+│   └── script.js                        # Interactivity
 │
 ├── telecom_churn.csv                    # Dataset
 ├── train.py                             # Main training script
 ├── app.py                               # Flask web application
 ├── requirements.txt                     # Python dependencies
-├── .gitignore                           # Git ignore file
-└── README.md                            # This file
+├── README.md                            # This file
+├── PROJECT_SUMMARY.md                   # Project overview
+└── SETUP.md                             # Setup instructions
 ```
-
-## 🚀 Features
-
-### Data Science Pipeline
-- ✅ Comprehensive EDA with 15+ visualizations
-- ✅ Data quality checks (missing values, duplicates, outliers)
-- ✅ Feature correlation analysis
-- ✅ Statistical comparisons between churned and non-churned customers
-- ✅ Feature engineering insights
-
-### Model Development
-- ✅ Logistic Regression with hyperparameter tuning (GridSearchCV)
-- ✅ Stratified train-test split
-- ✅ Feature scaling using StandardScaler
-- ✅ Cross-validation for robust evaluation
-- ✅ Multiple evaluation metrics (Accuracy, Precision, Recall, F1, ROC-AUC)
-
-### Web Application
-- ✅ Clean and modern user interface
-- ✅ Real-time predictions via REST API
-- ✅ Input validation and error handling
-- ✅ Probability visualization
-- ✅ Personalized recommendations
-- ✅ Responsive design for mobile devices
 
 ## 📊 Dataset
 
-The dataset contains **3,333 customer records** with the following features:
+The dataset contains **3,333 customer records** with 10 features:
 
 | Feature | Description | Type |
 |---------|-------------|------|
-| **AccountWeeks** | Number of weeks the customer has been with the company | Numeric |
-| **ContractRenewal** | Whether the contract was renewed (0=No, 1=Yes) | Binary |
-| **DataPlan** | Whether the customer has a data plan (0=No, 1=Yes) | Binary |
-| **DataUsage** | Amount of data used (GB) | Numeric |
+| **AccountWeeks** | Number of weeks with the company | Numeric |
+| **ContractRenewal** | Contract renewal status (0=No, 1=Yes) | Binary |
+| **DataPlan** | Data plan subscription (0=No, 1=Yes) | Binary |
+| **DataUsage** | Data usage in GB | Numeric |
 | **CustServCalls** | Number of customer service calls | Numeric |
-| **DayMins** | Total daytime minutes used | Numeric |
+| **DayMins** | Daytime minutes used | Numeric |
 | **DayCalls** | Number of daytime calls | Numeric |
 | **MonthlyCharge** | Monthly service charge ($) | Numeric |
 | **OverageFee** | Overage charges ($) | Numeric |
-| **RoamMins** | Roaming minutes used | Numeric |
-| **Churn** | Target variable (0=Not Churned, 1=Churned) | Binary |
+| **RoamMins** | Roaming minutes | Numeric |
+| **Churn** | Target variable (0=No, 1=Yes) | Binary |
 
-## 🛠️ Installation
+## 🚀 Quick Start
 
-### Prerequisites
-- Python 3.10 or higher
-- pip (Python package manager)
+See [SETUP.md](SETUP.md) for detailed installation and setup instructions.
 
-### Setup Instructions
+### Basic Usage
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/yourusername/Logistic_Regression_Project.git
-   cd Logistic_Regression_Project
-   ```
-
-2. **Create a virtual environment** (recommended)
-   ```bash
-   python -m venv .venv
-   ```
-
-3. **Activate the virtual environment**
-   
-   On Windows:
-   ```bash
-   .venv\Scripts\activate
-   ```
-   
-   On macOS/Linux:
-   ```bash
-   source .venv/bin/activate
-   ```
-
-4. **Install dependencies**
+1. **Install dependencies:**
    ```bash
    pip install -r requirements.txt
    ```
 
-## 📖 Usage
+2. **Train the model:**
+   ```bash
+   python train.py
+   ```
+
+3. **Run the web application:**
+   ```bash
+   python app.py
+   ```
+
+4. **Access the application:**
+   Open your browser and navigate to `http://localhost:5000`
+
+## 📖 Usage Guide
 
 ### 1. Exploratory Data Analysis
 
-Open and run the Jupyter notebook to explore the data:
+Open the Jupyter notebook to explore the data:
 
 ```bash
 jupyter notebook notebooks/01_EDA_and_Analysis.ipynb
@@ -143,62 +110,34 @@ jupyter notebook notebooks/01_EDA_and_Analysis.ipynb
 
 The notebook includes:
 - Data loading and inspection
-- Data quality assessment
-- Target variable analysis
+- Statistical summaries
 - Feature distributions and correlations
-- Statistical comparisons
+- Target variable analysis
 - Outlier detection
 - Feature engineering insights
 
-### 2. Train the Model
+### 2. Model Training
 
-Run the training script to preprocess data and train the model:
+Run the training pipeline:
 
 ```bash
 python train.py
 ```
 
-This will:
-- Load and preprocess the data
-- Perform hyperparameter tuning using GridSearchCV
+This process will:
+- Load and preprocess data
+- Perform hyperparameter tuning with GridSearchCV
 - Train the logistic regression model
 - Evaluate performance on test data
 - Generate visualization plots
-- Save the model and preprocessing artifacts
+- Save model artifacts
 
 **Expected Output:**
-```
-================================================================================
-TELECOM CUSTOMER CHURN PREDICTION - MODEL TRAINING PIPELINE
-================================================================================
+- Model performance metrics
+- Confusion matrix, ROC curve, and feature importance plots
+- Saved model files in `models/` directory
 
-[STEP 1/4] Data Preprocessing
-Loading data from telecom_churn.csv...
-Data loaded successfully! Shape: (3333, 11)
-...
-
-[STEP 2/4] Model Training
-Performing hyperparameter tuning using GridSearchCV...
-✓ Best parameters found:
-  C: 1
-  penalty: l2
-  solver: liblinear
-...
-
-[STEP 3/4] Model Evaluation
-Performance Metrics:
-  Accuracy:  0.XXXX
-  Precision: 0.XXXX
-  Recall:    0.XXXX
-  F1-Score:  0.XXXX
-  ROC-AUC:   0.XXXX
-...
-
-[STEP 4/4] Saving Model
-✓ Model saved to models/churn_model.pkl
-```
-
-### 3. Run the Web Application
+### 3. Web Application
 
 Start the Flask server:
 
@@ -206,29 +145,24 @@ Start the Flask server:
 python app.py
 ```
 
-The application will be available at: **http://localhost:5000**
+The application provides:
+- Intuitive form for customer data input
+- Real-time churn predictions
+- Probability visualization
+- Personalized retention recommendations
 
-**Features of the Web Interface:**
-- Input customer details through an intuitive form
-- Get real-time churn predictions
-- View churn probability percentages
-- Receive personalized retention recommendations
-- Clean and professional design
-
-### 4. Make Predictions
+### 4. Making Predictions
 
 #### Via Web Interface:
-1. Open http://localhost:5000 in your browser
-2. Fill in the customer details
+1. Navigate to `http://localhost:5000`
+2. Fill in customer details
 3. Click "Predict Churn"
-4. View the prediction and recommendations
+4. View results with probability scores
 
 #### Via API:
 ```python
 import requests
-import json
 
-# Customer data
 customer_data = {
     "AccountWeeks": 128,
     "ContractRenewal": 1,
@@ -242,53 +176,45 @@ customer_data = {
     "RoamMins": 10
 }
 
-# Make prediction request
 response = requests.post(
     'http://localhost:5000/predict',
     json=customer_data,
     headers={'Content-Type': 'application/json'}
 )
 
-# Get results
-result = response.json()
-print(json.dumps(result, indent=2))
+print(response.json())
 ```
 
 ## 📈 Model Performance
 
 The model is evaluated using multiple metrics:
 
-- **Accuracy**: Overall correctness of predictions
-- **Precision**: Accuracy of positive predictions (churn)
-- **Recall**: Ability to find all churning customers
+- **Accuracy**: Overall prediction correctness
+- **Precision**: Accuracy of positive predictions
+- **Recall**: Ability to identify all churning customers
 - **F1-Score**: Harmonic mean of precision and recall
 - **ROC-AUC**: Area under the ROC curve
 
-Performance visualizations are saved in the `models/` directory:
-- `confusion_matrix.png` - Shows true vs predicted labels
-- `roc_curve.png` - ROC curve with AUC score
-- `feature_importance.png` - Most influential features
+Performance visualizations are automatically generated and saved in the `models/` directory.
 
 ## 🔍 Key Insights
 
-Based on the exploratory data analysis:
+Based on exploratory data analysis, key churn indicators include:
 
 1. **Customer Service Calls**: Strong positive correlation with churn
-2. **Contract Renewal**: Customers who don't renew are more likely to churn
-3. **Account Weeks**: Longer tenure generally indicates lower churn risk
+2. **Contract Renewal**: Non-renewal strongly indicates churn risk
+3. **Account Tenure**: Longer tenure generally indicates lower risk
 4. **Overage Fees**: Higher fees correlate with increased churn
-5. **Data Plan**: Having a data plan shows mixed effects on churn
+5. **Data Plan**: Subscription patterns affect churn likelihood
 
-## 🎨 Frontend Features
+## 🎨 Web Interface Features
 
-The web interface includes:
-
-- **Modern Design**: Clean, professional UI with gradient backgrounds
-- **Responsive Layout**: Works on desktop, tablet, and mobile devices
+- **Modern Design**: Clean, professional UI with responsive layout
 - **Form Validation**: Real-time input validation with visual feedback
-- **Interactive Elements**: Tooltips, animations, and smooth scrolling
+- **Interactive Elements**: Smooth animations and transitions
 - **Visual Feedback**: Color-coded results and probability bars
 - **Recommendations**: Personalized action items based on prediction
+- **Mobile Responsive**: Works seamlessly on all device sizes
 
 ## 🔧 API Endpoints
 
@@ -318,43 +244,42 @@ The web interface includes:
 }
 ```
 
-## 🧪 Testing
-
-To test the application:
-
-1. **Unit Testing**: Test individual modules
-   ```bash
-   python -m pytest tests/  # (if you add tests)
-   ```
-
-2. **Manual Testing**: Use the web interface with different customer profiles
-
-3. **API Testing**: Use tools like Postman or curl
-   ```bash
-   curl -X POST http://localhost:5000/predict \
-        -H "Content-Type: application/json" \
-        -d '{"AccountWeeks": 128, "ContractRenewal": 1, ...}'
-   ```
-
 ## 📚 Technologies Used
 
-### Backend
-- **Python 3.10**: Programming language
-- **Flask**: Web framework
-- **Scikit-learn**: Machine learning library
-- **Pandas**: Data manipulation
-- **NumPy**: Numerical computing
-
-### Data Science
-- **Matplotlib**: Plotting and visualization
-- **Seaborn**: Statistical visualization
-- **Joblib**: Model serialization
+### Backend & ML
+- **Python 3.10+**: Programming language
+- **Flask 3.0.0**: Web framework
+- **Scikit-learn 1.3.2**: Machine learning
+- **Pandas 2.1.4**: Data manipulation
+- **NumPy 1.24.3**: Numerical computing
+- **Matplotlib 3.8.2**: Visualization
+- **Seaborn 0.13.0**: Statistical plots
 
 ### Frontend
 - **HTML5**: Structure
-- **CSS3**: Styling with modern features
+- **CSS3**: Modern styling
 - **JavaScript (ES6+)**: Interactivity
 - **Font Awesome**: Icons
+
+## 🧪 Testing
+
+Test the application with sample data:
+
+**Low Churn Risk Customer:**
+```
+AccountWeeks: 128, ContractRenewal: 1, DataPlan: 1
+DataUsage: 2.7, CustServCalls: 1, DayMins: 265.1
+DayCalls: 110, MonthlyCharge: 89, OverageFee: 9.87
+RoamMins: 10
+```
+
+**High Churn Risk Customer:**
+```
+AccountWeeks: 65, ContractRenewal: 0, DataPlan: 0
+DataUsage: 0.29, CustServCalls: 4, DayMins: 129.1
+DayCalls: 137, MonthlyCharge: 44.9, OverageFee: 11.43
+RoamMins: 12.7
+```
 
 ## 🤝 Contributing
 
@@ -362,7 +287,7 @@ Contributions are welcome! Please follow these steps:
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+3. Commit your changes (`git commit -m 'Add AmazingFeature'`)
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
@@ -372,41 +297,39 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 👤 Author
 
-**Your Name**
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/yourprofile)
-- Email: your.email@example.com
+**Saai Sujit Chintala**
+- GitHub: [SujitChintala](https://github.com/SujitChintala)
+- LinkedIn: [Saai Sujit Chintala](https://www.linkedin.com/in/sujitchintala/)
+- Email: sujitchintala@gmail.com
 
 ## 🙏 Acknowledgments
 
-- Dataset source: Telecom customer data
+- Dataset source: Kaggle - Telecom customer dataset
 - Inspiration: Customer retention in telecom industry
-- Built as a portfolio project to demonstrate end-to-end ML skills
+- Built as a portfolio project demonstrating end-to-end ML skills
 
 ## 🔮 Future Enhancements
 
-- [ ] Add more ML models (Random Forest, XGBoost, Neural Networks)
+- [ ] Add more ML models (Random Forest, XGBoost)
 - [ ] Implement model comparison dashboard
 - [ ] Add batch prediction functionality
-- [ ] Include SHAP values for model interpretability
-- [ ] Deploy to cloud platform (AWS, Azure, or Heroku)
-- [ ] Add user authentication and prediction history
+- [ ] Include SHAP values for interpretability
+- [ ] Deploy to cloud platform (AWS, Azure, Heroku)
+- [ ] Add user authentication and history
 - [ ] Implement A/B testing framework
-- [ ] Create Docker container for easy deployment
-- [ ] Add real-time monitoring and logging
-- [ ] Integrate with CI/CD pipeline
+- [ ] Create Docker container
+- [ ] Add monitoring and logging
+- [ ] Integrate CI/CD pipeline
 
 ## 📞 Support
 
-If you encounter any issues or have questions:
+For issues or questions:
 
-1. Check the documentation above
-2. Search existing issues on GitHub
+1. Check the documentation
+2. Search existing GitHub issues
 3. Create a new issue with detailed description
 4. Contact the author directly
 
 ---
 
 **⭐ If you find this project helpful, please consider giving it a star!**
-
-Made with ❤️ for data science and machine learning
