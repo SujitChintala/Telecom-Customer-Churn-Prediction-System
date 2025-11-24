@@ -7,7 +7,7 @@ using the trained logistic regression model.
 
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
-import numpy as np
+#import numpy as np
 import joblib
 import os
 #import traceback
