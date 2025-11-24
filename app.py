@@ -10,7 +10,7 @@ from flask_cors import CORS
 #import numpy as np
 import joblib
 import os
-#import traceback
+import traceback
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
