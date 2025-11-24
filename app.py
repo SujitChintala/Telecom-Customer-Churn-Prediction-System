@@ -17,7 +17,7 @@ CORS(app)  # Enable CORS for all routes
 
 # Global variables for model and preprocessing objects
 model_data = None
-#scaler = None
+scaler = None
 feature_names = None
 
 
