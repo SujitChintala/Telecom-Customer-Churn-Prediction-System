@@ -21,7 +21,7 @@ scaler = None
 feature_names = None
 
 
-def load_model_artifacts():
+#def load_model_artifacts():
     """
     Load the trained model, scaler, and feature names.
     """
