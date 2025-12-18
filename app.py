@@ -76,8 +76,8 @@ def home():
 @app.route('/predict', methods=['POST'])
 def predict():
     """
-    API endpoint for making predictions.
-    Accepts JSON data with customer features.
+    API endpoint for making predictions
+    Accepts JSON data with customer features
     """
     try:
         # Check if model is loaded
