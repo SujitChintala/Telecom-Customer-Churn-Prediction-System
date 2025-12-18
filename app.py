@@ -155,7 +155,7 @@ def predict():
 @app.route('/api/info', methods=['GET'])
 def model_info():
     """
-    API endpoint to get model information.
+    API endpoint to get model information
     """
     try:
         if model_data is None:
