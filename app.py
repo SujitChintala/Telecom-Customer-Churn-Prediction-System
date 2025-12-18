@@ -68,7 +68,7 @@ def load_model_artifacts():
 @app.route('/')
 def home():
     """
-    Render the home page with the prediction form.
+    Render the home page with the prediction form
     """
     return render_template('index.html', feature_names=feature_names)
 
